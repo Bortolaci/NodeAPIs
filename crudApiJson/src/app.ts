@@ -33,7 +33,7 @@ app.post('/api/users', (req: any, res: any) => {
     const values = JSON.stringify(content);
     
     //lê o arquivo da base de dados e adiciona o novo objeto
-    app.fs.writeFileSync(data, values);
+    fs.writeFileSync(data, values);
     
     //retorno amigável para o usuário que chamou o endpoint
     res.status(201).send("User '" + req.body.username + "' registered successfully!");
