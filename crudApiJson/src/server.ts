@@ -1,8 +1,8 @@
-import router from './routes/userRouter';
 import dotenv from 'dotenv';
 dotenv.config();
+import app from './app';
 
 const PORT = process.env.PORT || 5000;
 
 //Iniciar servidor
-router.listen(PORT, () => console.log(`listening at port: ${PORT}`));
+app.listen(PORT, () => console.log(`listening at port: ${PORT}`));

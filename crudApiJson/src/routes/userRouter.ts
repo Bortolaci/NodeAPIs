@@ -3,21 +3,17 @@ const express = require('express');
 const fs = require('fs');
 //Importar banco de dados de extensão .json
 const data: string = './database.json'; 
-//Instancia o express na variável app
 
-const router = express();
-
-//Pro express utilizar o JSON
-router.use(express.json());
+const router = express.Router();
 
 //Listar registros
-router.get('/api/users', (req: any, res: any) => {
+router.get('/users', (req: any, res: any) => {
     const jsonData = fs.readFileSync(data);
     res.send(JSON.parse(jsonData));
 });
 
 //Cadastrar usuario
-router.post('/api/users', (req: any, res: any) => {
+router.post('/users', (req: any, res: any) => {
     //atribui a base de dados em nova variavel
     const jsonDataBase = fs.readFileSync(data);
     
@@ -41,7 +37,7 @@ router.post('/api/users', (req: any, res: any) => {
 });
 
 //Editar usuario
-router.put('/api/user/:id', (req: any, res: any) => {
+router.put('/user/:id', (req: any, res: any) => {
     //atribui a base de dados em nova variavel
     const jsonDataBase = fs.readFileSync(data);
 
@@ -64,7 +60,7 @@ router.put('/api/user/:id', (req: any, res: any) => {
     res.send(`User with id ${userId} has been updated`)
 });
 
-router.delete('/api/user/:id', (req: any, res: any) => {
+router.delete('/user/:id', (req: any, res: any) => {
     //atribui a base de dados em nova variavel
     const jsonDataBase = fs.readFileSync(data);
 
