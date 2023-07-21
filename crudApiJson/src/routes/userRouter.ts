@@ -1,17 +1,12 @@
 const express = require('express');
-//Importar o pacote File System para manipular arquivos
-const fs = require('fs');
-//Importar banco de dados de extensão .json
-const data: string = './database.json'; 
+
+import userController from "../controller/userController";
 
 const router = express.Router();
 
 //Listar registros
-router.get('/users', (req: any, res: any) => {
-    const jsonData = fs.readFileSync(data);
-    res.send(JSON.parse(jsonData));
-});
-
+router.get('/users', userController.listUsers);
+/*
 //Cadastrar usuario
 router.post('/users', (req: any, res: any) => {
     //atribui a base de dados em nova variavel
@@ -82,5 +77,5 @@ router.delete('/user/:id', (req: any, res: any) => {
     //retorno amigável para o usuário que o endpoint
     res.send(`User with id ${userId} has been deleted`);
 });
-
+*/
 export default router; 
