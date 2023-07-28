@@ -13,12 +13,12 @@ const router = express.Router() // .Router() = instância (pesquisar depois)
 router.get('/users', userController.listUsers);
 
 // Cadastrar usuário
-router.post('/users', userController.registerUser);
+router.post('/users', userController.createUser);
 
 // Editar usuário
-router.put('/user/:id', userController.editUser);
+//router.put('/user/:id', userController.editUser);
 
 // Deletar usuário
-router.delete('/user/:id', userController.deleteUser);
+//router.delete('/user/:id', userController.deleteUser);
 
 export default router;
