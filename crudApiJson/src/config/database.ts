@@ -9,6 +9,14 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
+/*async function selectUsers() {
+    const query = connection.query('SELECT * FROM clients', (err, results) => {
+        console.log(results);      
+        return results;
+    });
+    //return query;
+}*/
+
 export default {
     connection
 };

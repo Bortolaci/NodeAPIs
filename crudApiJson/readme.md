@@ -1,36 +1,42 @@
-Criar pasta do projeto
 ```
-mkdir crudApiJson
+npm install
 ```
-Acessar a pasta
 ```
-cd crudApiJson
+touch .env
 ```
-Inciar gerenciador de pacotes
+Colar no arquivo .env
 ```
-npm init -y
+PORT = 3000
 ```
-Instalar pacotes básicos para rodar o servidor
+Install package mysql2
 ```
-npm i typescript express nodemon ts-node
+npm i mysql2
 ```
-Iniciar configuração do typescript
+create folder config
 ```
-npx tsc --init
+mkdir src/config
 ```
-Criar pasta src
+create file database.ts
 ```
-mkdir src
+touch config/database.ts
 ```
-Criar arquivo server.ts dentro da pasta src
+
+Create table clients
+
+
 ```
-touch src/server.ts
+const mysql = require('mysql2/promise');
+ 
+const client = mysql.createPool(process.env.CONNECTION_STRING);
+
+async function selectUsers() {
+    const res = await client.query('SELECT * FROM clients');
+    return res[0];
+}
+
+module.exports = {
+    selectUsers
+}
 ```
-Criar arquivo de banco de dados
-```
-touch database.json
-```
-Criar um objeto vazio no arquivo database.json
-```
-{}
-```
+
+Importar database no constroller

@@ -3,23 +3,56 @@ import db from '../config/database';
 
 // Listar usuários // get, post, put e delete = método
 async function listUsers(req: Request, res: Response) {
-    db.connection.query('SELECT * FROM clients', (err, results) => {
-        console.log(results);
+    db.connection.query('SELECT * FROM clients_ecommerce;', (err, results) => {
         res.send(results);
-    });
-}
+        if (err){
+            res.json({
+                success: false
+            });
+        } else {
+            res.json({
+                success: true,
+                message: 'Sucesso.',
+                data: results
+            })
+        }
+    })
+};
 
 async function createUser(req: Request, res: Response) {
-    const querySql = 'INSERT INTO clients(DS_NAME, NM_CELLPHONE, DS_STATUS) VALUES(?,?,?);';
+    const querySql = 'INSERT INTO clients_ecommerce(DS_NAME, DS_UF) VALUES(?,?);';
+    
     const params = Array(
-        req.body.DS_NAME,
-        req.body.NM_CELLPHONE,
-        req.body.DS_STATUS
+        req.body.ds_name,
+        req.body.ds_uf
     );
 
     db.connection.query(querySql, params, (err, results) => {
-        res.send('Cadastro realizado com sucesso!');
-    })
-}
+        if (err) {
+            res.status(404).json({
+                succes: false,
+                message: "Cadastro não realizado!",
+            })
+        }
+        res.json({
+            success: true,
+            message: "Cadastro realizado com sucesso!",
+            createdId: results
+        });
+    });
+};
 
-export default { listUsers,createUser };
+async function editUser(req: Request, res: Response) {
+    res.send(`editUser ${req.params.idUser}`);
+};
+
+async function deleteUser(req: Request, res: Response) {
+    res.send(`deleteUser ${req.params.idUser}`);
+};
+
+export default {
+    listUsers,
+    createUser,
+    editUser,
+    deleteUser
+};

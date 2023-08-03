@@ -1,5 +1,3 @@
-import app from "../app";
-
 // Importar o pacote express para criar o servidor
 const express = require('express');
 
@@ -16,9 +14,9 @@ router.get('/users', userController.listUsers);
 router.post('/users', userController.createUser);
 
 // Editar usuário
-//router.put('/user/:id', userController.editUser);
+router.put('/user/:id', userController.editUser);
 
 // Deletar usuário
-//router.delete('/user/:id', userController.deleteUser);
+router.delete('/user/:id', userController.deleteUser);
 
 export default router;
